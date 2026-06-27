@@ -8,8 +8,13 @@ const store = {
   set(k,v){ try{ localStorage.setItem(k,v); }catch(e){ _mem[k]=v; } }
 };
 
+// Ingebouwde standaard TMDB-sleutel: zo werkt de site meteen voor iedereen,
+// zonder dat bezoekers zelf een sleutel hoeven in te vullen.
+// (Bezoekers kunnen via Instellingen alsnog hun eigen sleutel gebruiken.)
+const DEFAULT_TMDB_KEY = "ee95529c2736ea03cde3fab5924d98ee";
+
 let state = {
-  key: store.get("tmdb_key") || "",
+  key: store.get("tmdb_key") || DEFAULT_TMDB_KEY,
   region: store.get("tmdb_region") || "NL",
   view: "discover",
   filter: "all",
