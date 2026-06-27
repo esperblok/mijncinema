@@ -10,8 +10,14 @@
 <meta property="og:title" content="🎬 MijnCinema — Film & Serie Dashboard" />
 <meta property="og:description" content="Ontdek films & series, houd je watchlist bij en vind legaal waar je ze kunt kijken." />
 <meta property="og:type" content="website" />
-<!-- Favicon (inline, geen extern bestand nodig) -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎬%3C/text%3E%3C/svg%3E" />
+<!-- Favicon & app-iconen -->
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16.png" />
+<link rel="icon" href="icons/favicon.ico" />
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="MijnCinema" />
 <link rel="manifest" href="manifest.webmanifest" />
 <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -24,6 +30,7 @@
       <input id="searchInput" type="text" data-i18n-ph="search_ph" placeholder="Zoek films & series…" />
       <button class="btn primary" data-i18n="search_btn" onclick="doSearch()">Zoek</button>
     </div>
+    <button class="btn primary" id="installBtn" style="display:none" onclick="installApp()">📲 App</button>
     <button class="btn" id="langBtn" onclick="toggleLang()">🌍 EN</button>
     <button class="btn" data-i18n="settings" onclick="openSettings()">⚙️ Instellingen</button>
     <button class="btn" data-i18n="export" onclick="exportMenu()">⬇️ Exporteer</button>
@@ -165,5 +172,13 @@
 <div class="toast" id="toast"></div>
 
 <script src="js/app.js"></script>
+<script>
+  // Service worker registreren -> maakt de site installeerbaar als app (PWA)
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("sw.js").catch(()=>{});
+    });
+  }
+</script>
 </body>
 </html>

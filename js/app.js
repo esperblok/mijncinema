@@ -77,6 +77,34 @@ let state = {
 let GENRES = {};       // id -> name
 let currentDetail = null;
 
+/* ---------- App installeren (PWA) ---------- */
+let deferredPrompt = null;
+window.addEventListener("beforeinstallprompt", e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  const b = document.getElementById("installBtn");
+  if (b) b.style.display = "";
+});
+window.addEventListener("appinstalled", () => {
+  deferredPrompt = null;
+  const b = document.getElementById("installBtn");
+  if (b) b.style.display = "none";
+  toast(state.lang==="nl" ? "App geïnstalleerd 🎉" : "App installed 🎉");
+});
+async function installApp(){
+  if (!deferredPrompt){
+    toast(state.lang==="nl"
+      ? "Gebruik het browsermenu → 'Toevoegen aan beginscherm'"
+      : "Use the browser menu → 'Add to Home screen'");
+    return;
+  }
+  deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  deferredPrompt = null;
+  const b = document.getElementById("installBtn");
+  if (b) b.style.display = "none";
+}
+
 /* ---------- helpers ---------- */
 function toast(msg){
   const t=document.getElementById("toast"); t.textContent=msg; t.classList.add("show");
