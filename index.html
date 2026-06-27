@@ -21,21 +21,25 @@
   <div class="bar">
     <div class="logo" id="logo" onclick="logoTap()" title="">🎬 Mijn<span>Cinema</span></div>
     <div class="search">
-      <input id="searchInput" type="text" placeholder="Zoek films & series… (bv. Dune, Breaking Bad)" />
-      <button class="btn primary" onclick="doSearch()">Zoek</button>
+      <input id="searchInput" type="text" data-i18n-ph="search_ph" placeholder="Zoek films & series…" />
+      <button class="btn primary" data-i18n="search_btn" onclick="doSearch()">Zoek</button>
     </div>
-    <button class="btn" onclick="openSettings()">⚙️ Instellingen</button>
-    <button class="btn" onclick="exportMenu()">⬇️ Exporteer</button>
+    <button class="btn" id="langBtn" onclick="toggleLang()">🌍 EN</button>
+    <button class="btn" data-i18n="settings" onclick="openSettings()">⚙️ Instellingen</button>
+    <button class="btn" data-i18n="export" onclick="exportMenu()">⬇️ Exporteer</button>
   </div>
   <div class="tabs">
-    <button class="tab active" data-view="discover" onclick="setView('discover')">🔥 Ontdek</button>
-    <button class="tab" data-view="search" onclick="setView('search')">🔎 Zoekresultaten</button>
-    <button class="tab" data-view="watchlist" onclick="setView('watchlist')">📌 Wil ik kijken</button>
-    <button class="tab" data-view="watched" onclick="setView('watched')">✅ Gezien</button>
+    <button class="tab active" data-view="discover" data-i18n="tab_discover" onclick="setView('discover')">🔥 Ontdek</button>
+    <button class="tab" data-view="search" data-i18n="tab_search" onclick="setView('search')">🔎 Zoekresultaten</button>
+    <button class="tab" data-view="watchlist" data-i18n="tab_watchlist" onclick="setView('watchlist')">📌 Wil ik kijken</button>
+    <button class="tab" data-view="watched" data-i18n="tab_watched" onclick="setView('watched')">✅ Gezien</button>
     <div class="filters">
-      <button class="chip active" data-f="all" onclick="setFilter('all')">Alles</button>
-      <button class="chip" data-f="movie" onclick="setFilter('movie')">🎞️ Films</button>
-      <button class="chip" data-f="tv" onclick="setFilter('tv')">📺 Series</button>
+      <select id="genreSelect" class="genresel" onchange="setGenre(this.value)">
+        <option value="all">🎭 Alle genres</option>
+      </select>
+      <button class="chip active" data-f="all" data-i18n="f_all" onclick="setFilter('all')">Alles</button>
+      <button class="chip" data-f="movie" data-i18n="f_movie" onclick="setFilter('movie')">🎞️ Films</button>
+      <button class="chip" data-f="tv" data-i18n="f_tv" onclick="setFilter('tv')">📺 Series</button>
     </div>
   </div>
 </header>
@@ -46,7 +50,7 @@
   <div id="empty" class="empty" style="display:none"></div>
 </main>
 
-<footer>
+<footer data-i18n="footer">
   Gegevens via The Movie Database (TMDB). Deze app is niet door TMDB onderschreven.<br>
   Streaming-beschikbaarheid via JustWatch (in TMDB). Kijk altijd via legale diensten. 💛
 </footer>
@@ -67,15 +71,15 @@
     <div class="pad">
       <button class="close" style="position:static; float:right" onclick="closeSettings()">✕</button>
       <h2>⚙️ Instellingen</h2>
-      <p style="color:var(--muted); font-size:14px">De site werkt al meteen — er is een sleutel ingebouwd. ✅<br>Wil je je <b>eigen</b> gratis TMDB-sleutel gebruiken? Vul 'm hieronder in (optioneel).</p>
-      <label>TMDB API-sleutel (v3 auth)</label>
-      <input id="apiKeyInput" type="text" placeholder="Plak hier je API-sleutel…" />
-      <label>Regio voor streaming-aanbod</label>
+      <p style="color:var(--muted); font-size:14px" data-i18n="set_intro">De site werkt al meteen — er is een sleutel ingebouwd. ✅</p>
+      <label data-i18n="set_key">TMDB API-sleutel (v3 auth)</label>
+      <input id="apiKeyInput" type="text" placeholder="TMDB API key…" />
+      <label data-i18n="set_region">Regio voor streaming-aanbod</label>
       <input id="regionInput" type="text" placeholder="NL" maxlength="2" />
       <div id="settingsMsg"></div>
       <div style="margin-top:16px; display:flex; gap:10px">
-        <button class="btn primary" onclick="saveSettings()">Opslaan & testen</button>
-        <button class="btn" onclick="closeSettings()">Sluiten</button>
+        <button class="btn primary" data-i18n="set_save" onclick="saveSettings()">Opslaan & testen</button>
+        <button class="btn" data-i18n="set_close" onclick="closeSettings()">Sluiten</button>
       </div>
 
       <div class="sec-title">Hoe kom ik gratis aan een sleutel?</div>

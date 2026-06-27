@@ -117,3 +117,23 @@
     border:1px solid var(--border); padding:12px 20px; border-radius:10px; z-index:200; opacity:0;
     transition:.3s; pointer-events:none}
   .toast.show{opacity:1; bottom:34px}
+
+/* --- Genre dropdown --- */
+.genresel{
+  padding:7px 13px; border-radius:999px; border:1px solid var(--border);
+  background:var(--card); color:var(--txt); font-size:13px; font-weight:600; cursor:pointer; outline:none;
+}
+.genresel:focus{border-color:var(--accent)}
+
+/* --- Eigen sterren-waardering (op kaart) --- */
+.urating{font-size:12px; color:var(--gold); margin-top:3px; letter-spacing:1px}
+.urating .off{color:#3a3a4d}
+
+/* --- Sterren in detailvenster --- */
+.ratebox{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:14px 0 4px}
+.stars{display:inline-flex; gap:3px}
+.star{font-size:26px; line-height:1; color:#3a3a4d; cursor:pointer; transition:.12s; user-select:none}
+.star:hover{transform:scale(1.15)}
+.star.on{color:var(--gold)}
+.ratenum{font-size:14px; font-weight:700; color:var(--gold)}
+.ratehint{font-size:12px; color:var(--muted)}
